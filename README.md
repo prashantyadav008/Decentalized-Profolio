@@ -12,6 +12,10 @@ These packages will help you in both small and large projects. They will assist 
 
     npm init -y
 
+<b> Or Clean Cache </b>
+
+    npm cache clean --force
+
 <b> Dependencies </b>
 
     npm install --save
