@@ -6,13 +6,13 @@ export async function basicMethod() {
   const [deployer, ...users] = await ethers.getSigners();
 
   // Deploy Token Contract
-  const tokens = await ethers.getContractFactory("BasicContract");
-  const hardhatToken = await tokens.deploy();
+  const Projects = await ethers.getContractFactory("Projects");
+  const projects = await Projects.deploy();
 
   return {
     deployer,
     users,
-    hardhatToken,
+    projects,
   };
 }
 
