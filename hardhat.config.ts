@@ -47,6 +47,10 @@ const config: HardhatUserConfig = {
     currency: "USD",
   },
 
+  paths: {
+    artifacts: "./Reactfrontend/src/artifacts",
+  },
+  
   etherscan: {
     apiKey: process.env.POLYGONSCAN_API_KEY,
   },
