@@ -7,22 +7,25 @@ import "hardhat/console.sol";
 import "./Structure.sol";
 
 contract Projects {
-    string objective;
     string githubLink;
     string linkdinLink;
 
     address public admin;
 
-    uint[] public projectOrder;
-    uint[] public skillOrder;
-    uint[] public clgProjectOrder;
-
     uint public totalProjects;
     uint public totalSkills;
+    uint public totalGithub;
     uint public totalClgProjects;
+
+    uint[] public projectOrder;
+    uint[] public skillOrder;
+    uint[] public githubOrder;
+    uint[] public clgProjectOrder;
+
 
     mapping(uint => Project) public projects;
     mapping(uint => Skill) public skills;
+    mapping(uint => GithubProject) public githubs;
     mapping(uint => CollectProject) public clgProjects;
 
     constructor() {
@@ -33,7 +36,6 @@ contract Projects {
         require(msg.sender == admin, "Only Admin can do this action!");
         _;
     }
-
 
     ///////////////////////////////////
     /////////// Project //////////////
@@ -47,7 +49,7 @@ contract Projects {
         string memory mainTechnology,
         string memory languages 
     ) external onlyAdmin  {
-        totalProjects++;
+        totalProjects++; 
 
         projects[totalProjects] = Project(
             name,
@@ -61,6 +63,8 @@ contract Projects {
         );
 
         projectOrder.push(totalProjects);
+
+
     }
 
      function updateProject(
@@ -74,6 +78,9 @@ contract Projects {
         string memory languages,
         bool status
     ) external onlyAdmin  {
+
+        require(projectId <= totalProjects, "Skill Id is Invalid!");
+
         projects[projectId] = Project(
             name,
             description,
@@ -90,6 +97,9 @@ contract Projects {
         uint length = projectOrder.length;
         delete projectOrder;
         for(uint i=0; i<length;){
+            
+            require(orders[i] <= totalProjects, "Skill Id is Invalid!");
+
             projectOrder.push(orders[i]);        
             unchecked {
                 i++;
@@ -109,6 +119,8 @@ contract Projects {
     }
 
     function updateSkills(uint skillId,string memory skill, bool status) external onlyAdmin  {
+        require(skillId <= totalSkills, "Skill Id is Invalid!");
+
         skills[skillId] = Skill(skill, status);
     }
 
@@ -116,6 +128,8 @@ contract Projects {
         uint length = skillOrder.length;
         delete skillOrder;
         for(uint i=0; i<length;){
+
+            require(orders[i] <= totalSkills, "Skill Id is Invalid!");
             skillOrder.push(orders[i]);        
             unchecked {
                 i++;
@@ -155,6 +169,10 @@ contract Projects {
         string memory description,
         bool status
     ) external onlyAdmin  {
+
+        require(clgProjectId <= totalClgProjects, "Skill Id is Invalid!");
+
+
         clgProjects[clgProjectId] = CollectProject(
             name,
             description,
@@ -170,12 +188,46 @@ contract Projects {
         delete clgProjectOrder;
 
         for(uint i=0; i<length;){
+
+            require(orders[i] <= totalClgProjects, "Skill Id is Invalid!");
+
             clgProjectOrder.push(orders[i]);        
             unchecked {
                 i++;
             }
         }
     } 
+
+
+    ///////////////////////////////////
+    //////////// Github ///////////////
+    ///////////////////////////////////
+
+    function addGithubDetails(string memory name, string memory link ) external onlyAdmin  {
+        totalGithub++;
+        githubs[totalGithub] = GithubProject(name ,link, true);
+        githubOrder.push(totalGithub);
+    }
+
+    function updateGithubDetails(uint githubId, string memory name,string memory url, bool status) external onlyAdmin  {
+         require(githubId <= totalGithub, "Skill Id is Invalid!");
+
+        githubs[githubId] = GithubProject(name, url, status);
+    }
+
+    function updateGithubOrder( uint[] memory orders)external {
+        uint length = githubOrder.length;
+        delete githubOrder;
+        for(uint i=0; i<length;){
+            
+            require(orders[i] <= totalGithub, "Skill Id is Invalid!");
+
+            githubOrder.push(orders[i]);        
+            unchecked {
+                i++;
+            }
+        }
+    }
  
 }
 

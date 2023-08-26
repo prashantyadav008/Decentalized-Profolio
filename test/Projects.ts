@@ -86,6 +86,15 @@ describe("Basic Contract", () => {
       url= "https://omgee.com.au";
       image= "https://omgee.com.au";
       contribution= "Creating Api's, Creating Functionalities in Front-end & Backend ";
+
+      await projects.addProject(name,
+        description,
+        url,
+        image,
+        contribution,
+        mainTechnology,
+        languages
+      );
   
       await projects.updateProject(
         1,
@@ -194,6 +203,27 @@ describe("Basic Contract", () => {
         languages
       )).to.revertedWith("Only Admin can do this action!");
 
+      await projects.addProject(name,
+        description,
+        url,
+        image,
+        contribution,
+        mainTechnology,
+        languages
+      );
+
+      await expect(projects.connect(deployer).updateProject(
+        5,
+        name,
+        description,
+        url,
+        image,
+        contribution,
+        mainTechnology,
+        languages,
+        false
+      )).to.revertedWith("Skill Id is Invalid!");
+
       await expect(projects.connect(users[1]).updateProject(
         1,
         name,
@@ -205,7 +235,9 @@ describe("Basic Contract", () => {
         languages,
         false
       )).to.revertedWith("Only Admin can do this action!");
-      
+
+
+      await expect(projects.updateProjectOrder([5,1,2])).to.revertedWith("Skill Id is Invalid!");
     });
   });
 
@@ -239,6 +271,8 @@ describe("Basic Contract", () => {
 
       skills = "Blockchain, Solidity";
   
+      await projects.addSkills(skills); 
+
       await projects.updateSkills(1,skills,false); 
   
       expect(await projects.skills(1)).to.have.deep.members([
@@ -280,7 +314,14 @@ describe("Basic Contract", () => {
   
       await expect(projects.connect(users[1]).addSkills(skills)).to.revertedWith("Only Admin can do this action!");
 
+      await projects.connect(deployer).addSkills(skills)
+
+      await expect(projects.connect(deployer).updateSkills(5,skills,false)).to.revertedWith("Skill Id is Invalid!"); 
+
       await expect(projects.connect(users[1]).updateSkills(1,skills,false)).to.revertedWith("Only Admin can do this action!"); 
+
+      await expect(projects.connect(deployer).updateSkillOrder([5,1,2])).to.revertedWith("Skill Id is Invalid!"); 
+
     });
   });
 
@@ -343,6 +384,13 @@ describe("Basic Contract", () => {
       technolgy= "Java, Core Java, MySQL, HTML, CSS, Javascript, Jquery.";
       contribution= "Database handling, Selecting designing, Adding Form Validations. ";
       description= "Students Easily give our College and Companies Aptitude test to ﬁnd out our knowledge level.";
+
+      await projects.addClgProject( 
+        name,
+        technolgy,
+        contribution,
+        description 
+      );
   
       await projects.updateClgProject( 
         1,
@@ -431,6 +479,22 @@ describe("Basic Contract", () => {
         description 
       )).to.revertedWith("Only Admin can do this action!");
 
+      await projects.addClgProject( 
+        name,
+        technolgy,
+        contribution,
+        description 
+      );
+
+      await expect( projects.connect(deployer).updateClgProject( 
+        5,
+        name,
+        technolgy,
+        contribution,
+        description, 
+        false
+      )).to.revertedWith("Skill Id is Invalid!");
+
       await expect( projects.connect(users[1]).updateClgProject( 
         1,
         name,
@@ -439,8 +503,97 @@ describe("Basic Contract", () => {
         description, 
         false
       )).to.revertedWith("Only Admin can do this action!");
+
+      await expect(projects.connect(deployer).updateClgProjectOrder([5,1,2])).to.revertedWith("Skill Id is Invalid!");
       
     });
   });
+
+  describe("Github Project Detail", () => {
+
+    var name = "Decentralized Protfolio"; 
+    var link = "https://github.com"; 
+
+    it("Should check Total Github Project", async () => {
+      const { deployer, projects } = await loadFixture(basicMethod);
+  
+      await projects.addGithubDetails(name, link);
+      await projects.addGithubDetails(name, link);
+      await projects.addGithubDetails(name, link);
+  
+      expect(await projects.totalGithub()).to.equal(big(3));
+    });
+
+    it("Should check Add Skill or not ", async () => {
+      const { deployer, projects } = await loadFixture(basicMethod);
+  
+      await projects.addGithubDetails(name, link); 
+  
+      expect(await projects.githubs(1)).to.have.deep.members([
+        name, link,
+        true
+      ]);
+    });
+  
+    it("Should check Update Project or not ", async () => {
+      const { deployer, projects } = await loadFixture(basicMethod);
+
+      name = "Lottery Project";
+      link = "https://github.com"; 
+
+      await projects.addGithubDetails(name, link); 
+  
+      await projects.updateGithubDetails(1,name, link, false); 
+  
+      expect(await projects.githubs(1)).to.have.deep.members([
+        name, link,
+        false
+      ]);
+  
+       
+    });
+  
+    it("Should check Order", async () => {
+      const { deployer, projects } = await loadFixture(basicMethod);
+  
+      await projects.addGithubDetails(name, link); 
+      await projects.addGithubDetails(name, link); 
+      await projects.addGithubDetails(name, link); 
+      
+      expect(await projects.githubOrder(0)).to.equal(big(1));
+      expect(await projects.githubOrder(1)).to.equal(big(2));
+      expect(await projects.githubOrder(2)).to.equal(big(3));
+    });
+  
+    it("Should check Update Order", async () => {
+      const { deployer, projects } = await loadFixture(basicMethod);
+  
+      await projects.addGithubDetails(name, link); 
+      await projects.addGithubDetails(name, link); 
+      await projects.addGithubDetails(name, link); 
+
+      await projects.updateGithubOrder([3,1,2]);
+
+      expect(await projects.githubOrder(0)).to.equal(big(3));
+      expect(await projects.githubOrder(1)).to.equal(big(1));
+      expect(await projects.githubOrder(2)).to.equal(big(2));
+    });
+
+    it("Should check Revert Message", async () => {
+      const { deployer, projects,users } = await loadFixture(basicMethod);
+  
+      await expect(projects.connect(users[1]).addGithubDetails( name, link,)).to.revertedWith("Only Admin can do this action!");
+
+      await projects.addGithubDetails(name, link); 
+
+      await expect(projects.connect(deployer).updateGithubDetails(5, name, link,false)).to.revertedWith("Skill Id is Invalid!"); 
+
+      await expect(projects.connect(users[1]).updateGithubDetails(1, name, link,false)).to.revertedWith("Only Admin can do this action!"); 
+
+      await expect(projects.connect(deployer).updateGithubOrder([5,1,2])).to.revertedWith("Skill Id is Invalid!"); 
+
+      
+    });
+  }); 
    
 });

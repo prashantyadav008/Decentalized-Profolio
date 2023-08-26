@@ -24,3 +24,9 @@ struct CollectProject{
     string contribution;
     bool status;
 }
+
+struct GithubProject{
+    string name;
+    string link;
+    bool status;
+}
