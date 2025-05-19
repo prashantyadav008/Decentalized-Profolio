@@ -68,20 +68,14 @@ export function ContactForm() {
         message: values.message,
       })
       .then((response) => {
-        console.log(
-          "env value:",
-          `${process.env.NEXT_PUBLIC_SERVER_URL}/contact-us`,
-          response.data
-        );
-
         if (response.data.status === true) {
           setIsSubmitted(true);
 
           // Optional: reset form if needed
-          console.log("Contact form submitted successfully!");
+          console.log("Contact form submitted successfully!", response);
           form.reset();
         } else {
-          console.log("something went wrong!");
+          console.log("something went wrong!", response);
 
           alert("Something went wrong. Please try again later!");
         }
