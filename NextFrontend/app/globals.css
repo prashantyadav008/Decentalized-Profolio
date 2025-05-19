@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+/** @format */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 
 @import "tailwindcss";
 @import "tw-animate-css";
@@ -117,9 +119,16 @@
 /* Dark mode enhancements */
 .dark body {
   background-color: var(--background);
-  background-image: 
-    radial-gradient(circle at 50% 50%, rgba(55, 65, 120, 0.2) 0%, transparent 70%),
-    radial-gradient(circle at 100% 0%, rgba(70, 40, 120, 0.1) 0%, transparent 40%);
+  background-image: radial-gradient(
+      circle at 50% 50%,
+      rgba(55, 65, 120, 0.2) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(70, 40, 120, 0.1) 0%,
+      transparent 40%
+    );
 }
 
 /* Improved animations for dark mode */
@@ -142,7 +151,6 @@
     @apply bg-background text-foreground;
   }
 }
-
 
 html {
   scroll-behavior: smooth;
@@ -208,11 +216,16 @@ html {
 }
 
 .variable-font {
-  font-family: 'Inter', sans-serif;
-  font-variation-settings: 'wght' 400;
+  font-family: "Inter", sans-serif;
+  font-variation-settings: "wght" 400;
   transition: font-variation-settings 0.3s ease;
 }
 
 .variable-font:hover {
-  font-variation-settings: 'wght' 600;
+  font-variation-settings: "wght" 600;
+}
+
+.bg-muted\/50,
+.bg-muted\/30 {
+  background-color: unset !important;
 }

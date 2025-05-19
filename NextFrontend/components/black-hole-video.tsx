@@ -5,6 +5,7 @@
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { motion } from "framer-motion";
+import ThreeWrapper from "@/components/home/ThreeWrapper";
 
 export function BlackHoleVideo() {
   const { theme } = useTheme();
@@ -24,12 +25,14 @@ export function BlackHoleVideo() {
       transition={{ duration: 1 }}
       className="fixed inset-0 overflow-hidden z-[-2] pointer-events-none">
       <video
-        src="/blackhole.webm"
-        className="absolute rotate-180 top-[-340px] left-0 w-[700px] h-[670px] lg:w-full lg:h-[700px] object-cover overflow-hidden opacity-70"
+        src="/blackhole.mp4"
+        className="absolute  top-[-360px] left-0 w-[700px] h-[1000px] lg:w-full lg:h-[1000px] object-cover overflow-hidden opacity-65"
         autoPlay
         loop
         muted
         playsInline></video>
+
+      <ThreeWrapper />
 
       <audio src="/audio.mp4" autoPlay loop preload="auto" playsInline />
     </motion.div>
