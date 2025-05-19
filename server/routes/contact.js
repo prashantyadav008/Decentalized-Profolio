@@ -8,6 +8,6 @@ const {
 } = require("../controllers/contactController");
 
 router.get("/", getServerStatus);
-router.post("/", sendContactEmail);
+router.post("/contact-us", sendContactEmail);
 
 module.exports = router;

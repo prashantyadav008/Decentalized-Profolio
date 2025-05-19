@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Prashant Yadav | Senior Blockchain Developer",
   description:
     "Passionate Blockchain Developer with experience in EVM-based chains, Hyperledger Fabric, and production-grade dApps.",
-  metadataBase: new URL("https://prashantyadav008.com"),
+  metadataBase: new URL("https://prashantyadav008.vercel.app/"),
 
   // Basic metadata
   applicationName: "Prashant Yadav Portfolio",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 
   openGraph: {
     type: "website",
-    url: "https://prashantyadav.com",
+    url: "https://prashantyadav008.vercel.app/",
     title: "Prashant Yadav | Senior Blockchain Developer",
     description:
       "Passionate Blockchain Developer with experience in EVM-based chains, Hyperledger Fabric, and production-grade dApps.",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   },
 
   alternates: {
-    canonical: "https://prashantyadav008.com",
+    canonical: "https://prashantyadav008.vercel.app/",
   },
 };
 
