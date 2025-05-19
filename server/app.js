@@ -13,7 +13,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Routes
-app.use("/api/contact-us", contactRoutes);
+app.use(contactRoutes);
 
 app.listen(process.env.PORT || 3000, () => {
   console.log(

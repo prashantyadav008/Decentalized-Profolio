@@ -3,6 +3,10 @@
 const nodemailer = require("nodemailer");
 const { generateEmailTemplate } = require("../utils/emailTemplate");
 
+const getServerStatus = async (req, res) => {
+  res.status(200).json({ message: "Server is running" });
+};
+
 const sendContactEmail = async (req, res) => {
   const { name, email, subject, message } = req.body;
 
@@ -40,4 +44,4 @@ const sendContactEmail = async (req, res) => {
   }
 };
 
-module.exports = { sendContactEmail };
+module.exports = { getServerStatus, sendContactEmail };
