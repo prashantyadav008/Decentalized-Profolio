@@ -26,7 +26,7 @@ export function BlackHoleVideo() {
       className="fixed inset-0 overflow-hidden z-[-2] pointer-events-none">
       <video
         src="/blackhole.mp4"
-        className="absolute  top-[-360px] left-0 w-[700px] h-[1000px] lg:w-full lg:h-[1000px] object-cover overflow-hidden opacity-65"
+        className="absolute  top-[-360px] left-0 w-[700px] h-[1100px] lg:w-full lg:h-[1100px] object-cover overflow-hidden opacity-65"
         autoPlay
         loop
         muted

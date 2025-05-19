@@ -1,0 +1,6 @@
+# paste your app password without space(app password like: abcd efgh ijkl)
+EMAIL_PASS=
+# paste reciver email address
+RECEIVER_EMAIL=
+
+PORT=8000
