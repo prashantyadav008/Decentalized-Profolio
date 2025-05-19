@@ -58,6 +58,7 @@ export function ContactForm() {
   function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
 
+    // Make the API call
     axios
       // .post(`http://localhost:8000/contact-us`, {
       .post(`${process.env.NEXT_PUBLIC_SERVER_URL}/contact-us`, {
@@ -67,14 +68,21 @@ export function ContactForm() {
         message: values.message,
       })
       .then((response) => {
-        console.log("API Response:", response.data);
+        console.log(
+          "env value:",
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/contact-us`,
+          response.data
+        );
 
         if (response.data.status === true) {
           setIsSubmitted(true);
 
           // Optional: reset form if needed
-          // form.reset();
+          console.log("Contact form submitted successfully!");
+          form.reset();
         } else {
+          console.log("something went wrong!");
+
           alert("Something went wrong. Please try again later!");
         }
       })
