@@ -8,9 +8,10 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { Project } from "@/data/projects";
+import { GithubProject } from "@/data/github-projects";
 
 interface ProjectDetailsProps {
-  project: Project;
+  project: Project | GithubProject;
   onBack: () => void;
 }
 

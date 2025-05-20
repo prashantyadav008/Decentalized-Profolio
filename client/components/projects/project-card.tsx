@@ -14,9 +14,10 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Project } from "@/data/projects";
+import { GithubProject } from "@/data/github-projects";
 
 interface ProjectCardProps {
-  project: Project;
+  project: Project | GithubProject;
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {

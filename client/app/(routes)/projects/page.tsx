@@ -14,7 +14,7 @@ const allTechnologies = Array.from(
 ).sort();
 
 const allGithubProjectTechnologies = Array.from(
-  new Set(githubProjects.flatMap((project) => project.technologies))
+  new Set(githubProjects.flatMap((githubProject) => githubProject.technologies))
 ).sort();
 
 export default function ProjectsPage() {
@@ -27,9 +27,9 @@ export default function ProjectsPage() {
     ? projects.filter((project) => project.technologies.includes(activeFilter))
     : projects;
 
-  const filteredGithubProjects = activeFilter
-    ? githubProjects.filter((project) =>
-        project.technologies.includes(activeFilter)
+  const filteredGithubProjects = activeGithubProjectFilter
+    ? githubProjects.filter((githubProjects) =>
+        githubProjects.technologies.includes(activeGithubProjectFilter)
       )
     : githubProjects;
 
@@ -146,13 +146,13 @@ export default function ProjectsPage() {
         </motion.div>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 mt-8">
-          {filteredGithubProjects.map((project, index) => (
+          {filteredGithubProjects.map((githubProjects, index) => (
             <motion.div
-              key={project.id}
+              key={githubProjects.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 * index }}>
-              <ProjectCard project={project} />
+              <ProjectCard project={githubProjects} />
             </motion.div>
           ))}
         </div>

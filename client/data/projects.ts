@@ -47,6 +47,23 @@ export const projects: Project[] = [
     featured: true
   },
   {
+    id: "enriched-academy",
+    title: "Enriched Academy",
+    description: "Online programs that teach essential financial skills like budgeting, investing, and retirement planning.",
+    longDescription: "Enriched Academy is a leading Canadian financial education platform that designs and delivers fun, engaging, and easy-to-understand online programs. It helps individuals master critical aspects of personal finance, including saving, budgeting, investing, debt reduction, and retirement planning. With a focus on real-life financial literacy, Enriched Academy empowers users to make smarter money decisions and build a secure financial future.",
+    technologies: ["Php", "Laravel", "CakePhp", "AWS S3 Bucket", "Nodejs", "IPFS(Pinata)", "JavaScript", "JQuery", "Bootstrap", "MySql", "Navicat"],
+    achievements: [
+      "Developed and contributed to Enriched Academy, a financial education platform serving 350k+ Canadian users.",
+      "Fixed critical bugs, created 30+ APIs, and implemented new front-end and back-end functionalities, improving platform speed.",
+      "Developed real-time financial simulation tools to help users analyse their investments and optimize strategies for better outcomes.",
+      "Improved the course enrollment process, ensuring seamless onboarding for new users"
+    ],
+    image: "/images/projects/enrichedacademy.jpeg",
+    github: "https://developers.enrichedacademy.com/",
+    liveUrl: "https://www.enrichedacademy.com/",
+    featured: true
+  },
+  {
     id: "tokenomics",
     title: "Tokenomics",
     description: "A decentralized ICO launchpad that releases tokens based on cliff and vesting schedules. It supports multiple allocation categories like private sale, public sale, liquidity, and rewards.",
@@ -92,23 +109,6 @@ export const projects: Project[] = [
     image: "/images/projects/dragonbank.png",
     liveUrl: "https://www.dragonbank.com/",
     featured: false
-  },
-  {
-    id: "enriched-academy",
-    title: "Enriched Academy",
-    description: "Online programs that teach essential financial skills like budgeting, investing, and retirement planning.",
-    longDescription: "Enriched Academy is a leading Canadian financial education platform that designs and delivers fun, engaging, and easy-to-understand online programs. It helps individuals master critical aspects of personal finance, including saving, budgeting, investing, debt reduction, and retirement planning. With a focus on real-life financial literacy, Enriched Academy empowers users to make smarter money decisions and build a secure financial future.",
-    technologies: ["Php", "Laravel", "CakePhp", "AWS S3 Bucket", "Nodejs", "IPFS(Pinata)", "JavaScript", "JQuery", "Bootstrap", "MySql", "Navicat"],
-    achievements: [
-      "Developed and contributed to Enriched Academy, a financial education platform serving 350k+ Canadian users.",
-      "Fixed critical bugs, created 30+ APIs, and implemented new front-end and back-end functionalities, improving platform speed.",
-      "Developed real-time financial simulation tools to help users analyse their investments and optimize strategies for better outcomes.",
-      "Improved the course enrollment process, ensuring seamless onboarding for new users"
-    ],
-    image: "/images/projects/enrichedacademy.jpeg",
-    github: "https://developers.enrichedacademy.com/",
-    liveUrl: "https://www.enrichedacademy.com/",
-    featured: true
   },
   {
     id: "omgee-and-teleboutik",

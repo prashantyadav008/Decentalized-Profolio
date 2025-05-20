@@ -11,20 +11,26 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { projects, Project } from "@/data/projects";
+import { githubProjects, GithubProject } from "@/data/github-projects";
 import React from "react";
 
 export default function ProjectPage() {
   const router = useRouter();
   const params = useParams();
-  const [project, setProject] = useState<Project | null>(null);
+  const [project, setProject] = useState<Project | GithubProject | null>(null);
 
   useEffect(() => {
     // Safely access slug from params
     const slug = params?.slug?.toString() || "";
 
     const foundProject = projects.find((p) => p.id === slug);
+
+    const foundGithubProject = githubProjects.find((p) => p.id === slug);
+
     if (foundProject) {
       setProject(foundProject);
+    } else if (foundGithubProject) {
+      setProject(foundGithubProject);
     } else {
       router.push("/projects");
     }

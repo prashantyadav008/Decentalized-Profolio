@@ -22,7 +22,7 @@ export function Galaxy() {
     color: 0xffffff,
     size: 0.5,
     transparent: true,
-    opacity: 0.8,
+    opacity: 1,
     map: new THREE.TextureLoader().load(
       "https://www.transparenttextures.com/patterns/black-tile.png"
     ),
