@@ -34,7 +34,7 @@ export function BlackHoleVideo() {
 
       <ThreeWrapper />
 
-      <audio src="/audio.mp4" autoPlay loop preload="auto" playsInline />
+      <audio src="/audio.mp4" preload="auto" autoPlay loop playsInline />
     </motion.div>
   );
 }
